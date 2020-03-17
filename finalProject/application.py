@@ -18,6 +18,7 @@ app.config["SECRET_KEY"] = "mySecret"
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
+
 # Ensure responses aren't cached
 @app.after_request
 def after_request(response):
@@ -25,6 +26,7 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
+
 
 # Custom filter
 app.jinja_env.filters["usd"] = usd
@@ -43,10 +45,12 @@ db = SQL("sqlite:///database.db")
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
+
 @socketio.on("message")
 def handlwMessage(msg):
-    print("Message: "+msg)
+    print("Message: " + msg)
     send(msg, broadcast=True)
+
 
 @app.route("/")
 @login_required
@@ -102,6 +106,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
@@ -113,5 +118,6 @@ def register():
         db.execute("INSERT INTO users (username, hash) VALUES (:username, :hashes);", username=name, hashes=userhash)
         return redirect("/login")
 
+
 if __name__ == '__main__':
-  app.run()
+    app.run()
