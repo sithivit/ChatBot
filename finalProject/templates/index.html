@@ -21,17 +21,31 @@
 
 			var socket = io.connect('http://127.0.0.1:5000');
 
-			socket.on('connect', function() {
-				socket.send('User has connected!');
-			});
-
 			$('#sendbutton').on('click', function() {
 				socket.send($('#message').val());
 				$("#messages").append('<div class="d-flex justify-content-start mb-4"><div class="msg_cotainer">'+$("#message").val()+'</div></div>');
 				$('#message').val('');
 			});
 
-		});
+			document.addEventListener('keyup', function(event){
+				if(event.defaultPrevented){
+					return;
+				}
+
+				var key = event.key || event.keyCode;
+
+				if(key === "Enter" ||  key == 10){
+					socket.send($('#message').val());
+					$("#messages").append('<div class="d-flex justify-content-start mb-4"><div class="msg_cotainer">'+$("#message").val()+'</div></div>');
+					$('#message').val('');
+				}
+			});
+
+			socket.on('message', function(msg) {
+     			console.log('Slider value updated');
+     			$('#messages').append('<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer">'+msg+'</div></div>');
+     		});
+});
 </script>
 	<!--Coded With Love By Mutiullah Samim-->
 	<body>
