@@ -1,18 +1,10 @@
 import re
-import sys
 
-def convert(s):
-    new = ""
-    for x in s:
-        new += x
-    return new
+pattern = r"([A-Za-z \s \n]*)"
 
-pattern = "[A-Za-z \s . ' , ! ? ]"
+with open("corona.txt", "r", encoding="utf-8") as original:
+    text = original.read()
+    extract = re.findall(pattern, text)
+    for i in range(len(extract)):
+        print(extract[i], end="")
 
-with open("silverLining.txt", "r", encoding="utf-8") as original:
-    result = re.sub(r'\[.*?\]', "", original.read())
-    result = re.sub(r"........\t", "", result)
-
-    english = re.findall(pattern, result)
-    final = convert(english).strip()
-    print(final)

@@ -21,10 +21,14 @@
 
 			var socket = io.connect('http://127.0.0.1:5000');
 
+			var content = document.getElementById("content");
+			content.scrollTop = content.scrollHeight;
+
 			$('#sendbutton').on('click', function() {
 				socket.send($('#message').val());
 				$("#messages").append('<div class="d-flex justify-content-start mb-4"><div class="msg_cotainer">'+$("#message").val()+'</div></div>');
 				$('#message').val('');
+				content.scrollTop = content.scrollHeight;
 			});
 
 			document.addEventListener('keyup', function(event){
@@ -38,15 +42,15 @@
 					socket.send($('#message').val());
 					$("#messages").append('<div class="d-flex justify-content-start mb-4"><div class="msg_cotainer">'+$("#message").val()+'</div></div>');
 					$('#message').val('');
+					content.scrollTop = content.scrollHeight;
 				}
 			});
 
 			socket.on('message', function(msg) {
      			console.log('Slider value updated');
      			$('#messages').append('<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer">'+msg+'</div></div>');
+     			content.scrollTop = content.scrollHeight;
      		});
-
-
 });
 </script>
 	<!--Coded With Love By Mutiullah Samim-->
@@ -57,7 +61,7 @@
 					<div class="card-header">
 					</div>
 					<div class="card-body contacts_body">
-						<h2 class="middle">User's guide</h2>
+						<h2 class="middle"></h2>
 					</div>
 					<div class="card-footer"></div>
 				</div></div>
@@ -83,7 +87,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="card-body msg_card_body">
+						<div class="card-body msg_card_body" id="content">
 						    <div id="messages">
 						    	</div>
 						</div>

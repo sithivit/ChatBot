@@ -1,19 +1,11 @@
 import re
 import sys
 
-def convert(s):
-    new = ""
-    for x in s:
-        new += x
-    return new
-
-pattern = "[A-Za-z \s . ' , ! ? ]"
+pattern = "([A-Za-z]+.)\t"
+pattern2 = "(.*)\t"
 
 with open("silverLining.txt", "r", encoding="utf-8") as original:
-    result = re.sub(r'\[.*?\]', "", original.read())
-    result = re.sub(r"......\t", "", result)
-
-    english = re.findall(pattern, result)
-    final = convert(english).strip()
-    final = re.sub("[^\w]", " ", final)
-    print(final)
+    reader = original.read()
+    extracted = re.findall(pattern2, reader)
+    for i in range(len(extracted)):
+        print(extracted[i])
