@@ -54,8 +54,11 @@ def handlwMessage(msg):
 @socketio.on("message")
 def handlwResponse(msg):
     response = chatbot(msg)
-    print(response["text"])
-    send(response["text"], broadcast=True)
+    if isinstance(response, str):
+        send(response, broadcast=True)
+    else:
+        print(response["text"])
+        send(response["text"], broadcast=True)
 
 
 @app.route("/")
