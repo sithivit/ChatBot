@@ -39,4 +39,3 @@ def chatbot(message,):
 def learningResponse(msg, last_message):
     bot.learn_response(msg, last_message)
     return takingNote
- m 
