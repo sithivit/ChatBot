@@ -11,7 +11,8 @@ bot = ChatBot(
         "chatterbot.logic.BestMatch",
         "chatterbot.logic.MathematicalEvaluation",
         "chatterbot.logic.SpecificResponseAdapter"
-    ]
+    ],
+    read_only=True
 )
 
 trainer = ChatterBotCorpusTrainer(bot)
@@ -27,9 +28,15 @@ for filename in os.listdir(r"C:\Users\Louis\Documents\gitKraken\ChatBot\finalPro
 trainer.train("chatterbot.corpus.english")
 
 
-def chatbot(message):
+def chatbot(message,):
     bot_input = bot.get_response(message)
     if bot_input.confidence >= 0.6:
         return bot_input.serialize()
     else:
         return unsureResponse
+
+
+def learningResponse(msg, last_message):
+    bot.learn_response(msg, last_message)
+    return takingNote
+ m 
