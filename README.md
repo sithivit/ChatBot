@@ -15,4 +15,4 @@ The chatterbot document also provide many dataset to train the ChatBot dataset: 
 
 the ChatBot can be improveby importing logic adpater from the document document: https://chatterbot.readthedocs.io/en/stable/logic/
 
-before running the code, you should use python 3.6 which has chatterbot, chatterbot_corpus, flask, socketIO, werkzeug and flask session to run this project. you should also find your API_KEY by this website https://developers.google.com/maps/documentation/javascript/get-api-key and use this command set API_KEY=(your api_key) but on linux and mac use this command instead export API_KEY=(your api_key). Furthermore also set app.py as flask application
+before running the code, you should use python 3.6 which has chatterbot, chatterbot_corpus, flask, socketIO, werkzeug and flask session to run this project.
