@@ -17,8 +17,7 @@ bot = ChatBot(
 
 trainer = ChatterBotCorpusTrainer(bot)
 
-unsureResponse = "My ChatBot is unsure of this question or conversation, please to improve this ChatBot input the " \
-                 "expect response to the question u previously ask "
+unsureResponse = "Huh! i don't get that"
 
 takingNote = "I'm taking note of this"
 
@@ -28,7 +27,7 @@ for filename in os.listdir(r"C:\Users\Louis\Documents\gitKraken\ChatBot\finalPro
 trainer.train("chatterbot.corpus.english")
 
 
-def chatbot(message,):
+def chatbot(message):
     bot_input = bot.get_response(message)
     if bot_input.confidence >= 0.6:
         return bot_input.serialize()

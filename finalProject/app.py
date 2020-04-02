@@ -48,15 +48,7 @@ def handlwMessage(msg):
 
 @socketio.on("message")
 def handlwResponse(msg):
-    unsureResponse = "My ChatBot is unsure of this question or conversation, please to improve this ChatBot input the " \
-                     "expect response to the question u previously ask "
-
     response = chatbot(msg)
-    if response == unsureResponse:
-        response = learningResponse(msg, session["last_message"])
-    print("previous message: ", session["last_message"])
-    session["last_message"]["in_response_to"] = msg
-    print("response: ",response)
     if isinstance(response, str):
         send(response, broadcast=True)
     else:
@@ -99,12 +91,6 @@ def login():
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
         session["username"] = request.form.get("username")
-        session["last_message"] = {
-            "text": "",
-            "in_response_to": "",
-            "conversation": "",
-            "tags": ""
-        }
 
         # Redirect user to home page
         return redirect("/")
