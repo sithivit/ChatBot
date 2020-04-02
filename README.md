@@ -1,5 +1,9 @@
 CS50 ChatBot website created by Ken Bunlungsak
 
+Hello, World!
+
+Here is my CS50 Final Project, a simple chatbot that talk to you depend on the topic you like
+
 In the frontend i use html and css from bootstrap template to create a beautiful scenery in index.html, login.html and register.html
 You can find the source code of the template from here https://colorlib.com/wp/template/login-form-v1/. The Template could be find in template folder.
 
